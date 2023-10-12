@@ -63,10 +63,12 @@ export function initEnumerateDevices(
       }
     });
 }
-
 export const BASE_URL: string =
   process.env.NODE_ENV === "development"
-    ? `${window.location.protocol}//${window.location.hostname}:9000`
-    : `${window.location.protocol}//${window.location.hostname}`;
+    ? "https://ecoserver-xfkp.onrender.com" // Replace "3000" with the correct port for your development server
+    : "https://ecoserver-xfkp.onrender.com"; // Use the full URL for your production server
+
 console.log("BASE_URL", BASE_URL);
+
 export const socket = io(`${BASE_URL}/video`, { forceNew: false });
+

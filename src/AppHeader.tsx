@@ -24,7 +24,7 @@ function AppHeader() {
           </Link>
 
           <div className="flex-1" />
-          <Typography>{format(new Date(), "p . E, LLL qo")}</Typography>
+          <Typography className="text-black">{format(new Date(), "p . E, LLL qo")}</Typography>
 
           <div className="flex items-center">
             <Tooltip title="Settings">

@@ -6,6 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@excalidraw/excalidraw": "^0.16.1",
     "@iconify/react": "^4.0.0",
     "@mui/material": "^5.10.0",
     "@reduxjs/toolkit": "^1.9.1",
@@ -28,6 +29,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
+    "react-modal": "^3.16.1",
     "react-query": "^3.39.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.3.0",
@@ -63,6 +65,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-modal": "^3.16.1",
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"

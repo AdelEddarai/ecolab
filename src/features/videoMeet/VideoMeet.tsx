@@ -1,10 +1,17 @@
 import { Icon as Iconify } from "@iconify/react";
+import { Excalidraw } from "@excalidraw/excalidraw";
+
+// import ReactModal from 'react-modal';
+import { Dialog, DialogContent, IconButton } from '@mui/material';
+// import CloseIcon from '@mui/icons-material/Close';
+
+import Modal from '@mui/material/Modal';
+
 import {
   Badge,
   Fab,
   Icon,
   InputBase,
-  IconButton,
   styled,
   Tooltip,
   Typography,
@@ -39,6 +46,8 @@ const PreviewInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
 interface VideoMeetProps {
   toggleCamera: () => void;
   toggleAudio: () => void;
@@ -60,6 +69,7 @@ interface VideoMeetProps {
     gender: string;
     meetId: string | undefined;
   }>;
+
   getAvatarQuery: any;
   onInputName: (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -97,7 +107,32 @@ export default function VideoMeet({
   getAvatarQuery,
   onInputName,
 }: VideoMeetProps) {
+  // const [isExcalidrawVisible, setIsExcalidrawVisible] = useState(false);
+  
+  const [isExcalidrawModalOpen, setIsExcalidrawModalOpen] = useState(false);
+
+  const handleVirtualBoardClick = () => {
+    // Open the virtual board modal
+    openExcalidrawModal();
+  };
+
+  // Define the function to open the virtual board modal
+  const openExcalidrawModal = () => {
+    setIsExcalidrawModalOpen(true);
+  };
+
+  // Define the function to close the virtual board modal
+  const closeExcalidrawModal = () => {
+    setIsExcalidrawModalOpen(false);
+  };
+
   const isMobile = useMediaQuery(ThemeConfig.breakpoints.down("md"));
+  // const handleVirtualBoardClick = () => {
+  //   // Handle the click event for the Excalidraw Virtual Board icon
+  //   // For example, you can open the virtual board here
+  //   console.log("Virtual Board icon clicked");
+  //   // Add your logic to open the virtual board or perform any other action
+  // };
   const mainActions: MainActionProps[] = useMemo(
     () => [
       {
@@ -152,6 +187,19 @@ export default function VideoMeet({
         isMobile: true,
         icon: "simple-line-icons:call-end",
       },
+      {
+        title: "Virtual Board",
+        variant: "opaque",
+        color: "primary",
+        size: "small",
+        icon: "mdi:whiteboard",
+        onClick: handleVirtualBoardClick
+      },
+
+
+
+
+
       // {
       //   title: "Layout",
       //   variant: "opaque",
@@ -164,6 +212,8 @@ export default function VideoMeet({
     // eslint-disable-next-line
     [camera, mic, isScreenRecord, hand]
   );
+
+
 
   const onChangePreviewName = (e: React.ChangeEvent<HTMLInputElement>) => {
     onInputName(e, (value) => {
@@ -222,6 +272,26 @@ export default function VideoMeet({
 
   return (
     <>
+
+        <Dialog
+    open={isExcalidrawModalOpen}
+    onClose={closeExcalidrawModal}
+    maxWidth="xl"
+      sx={{
+        width: '100%', // Set the width to 100% of the viewport width
+      }}
+  >
+    <DialogContent
+  sx={{
+    width: '90vw', // Set the width to 100% of the viewport width
+    height: '100vh', // Set the height to 100% of the viewport height
+  }}
+>
+  <Excalidraw />
+</DialogContent>
+    
+  </Dialog>
+
       <div className="bg-[#000000]  h-screen max-h-screen min-h-[500px] flex">
         <div
           className="w-100 border-box w-full"
@@ -232,11 +302,10 @@ export default function VideoMeet({
         >
           <main className="overflow-y-scroll h-full w-100">
             <div
-              className={`${
-                isMobile
+              className={`${isMobile
                   ? "h-full max-h-[calc(100vh-56px)] overflow-y-scroll flex justify-center items-center"
                   : "h-[calc(100vh-80px)]"
-              } pt-5 px-3 flex gap-2 w-full`}
+                } pt-5 px-3 flex gap-2 w-full`}
             >
               {peers.length >= 1 ? (
                 <div className="layout-grid-auto h-full">
@@ -252,19 +321,17 @@ export default function VideoMeet({
                       <div className="flex justify-between items-center">
                         <Icon
                           style={{
-                            color: `${
-                              mic
+                            color: `${mic
                                 ? ThemeConfig.palette.common.white
                                 : ThemeConfig.palette.error
-                            }`,
+                              }`,
                           }}
                         >
                           <Iconify
-                            icon={`${
-                              mic
+                            icon={`${mic
                                 ? "clarity:microphone-solid"
                                 : "clarity:microphone-mute-solid"
-                            }`}
+                              }`}
                           />
                         </Icon>
 
@@ -303,19 +370,17 @@ export default function VideoMeet({
                         <div className="flex justify-between items-center">
                           <Icon
                             style={{
-                              color: `${
-                                mic
+                              color: `${mic
                                   ? ThemeConfig.palette.common.white
                                   : ThemeConfig.palette.error
-                              }`,
+                                }`,
                             }}
                           >
                             <Iconify
-                              icon={`${
-                                peer.userObj.peer_audio
+                              icon={`${peer.userObj.peer_audio
                                   ? "clarity:microphone-solid"
                                   : "clarity:microphone-mute-solid"
-                              }`}
+                                }`}
                             />
                           </Icon>
 
@@ -347,9 +412,8 @@ export default function VideoMeet({
                 </div>
               ) : (
                 <VideoPreviewer
-                  className={`${
-                    isMobile ? "h-full max-h-[300px]" : "h-[calc(100vh-100px)]"
-                  }`}
+                  className={`${isMobile ? "h-full max-h-[300px]" : "h-[calc(100vh-100px)]"
+                    }`}
                   camera={camera}
                   mic={mic}
                   muted={true}
@@ -363,11 +427,10 @@ export default function VideoMeet({
                         style={{ color: `${ThemeConfig.palette.common.white}` }}
                       >
                         <Iconify
-                          icon={`${
-                            mic
+                          icon={`${mic
                               ? "clarity:microphone-solid"
                               : "clarity:microphone-mute-solid"
-                          }`}
+                            }`}
                         />
                       </Icon>
                       <VoicePitch stream={localMediaStream} />
