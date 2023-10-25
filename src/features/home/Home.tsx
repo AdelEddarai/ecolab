@@ -87,7 +87,7 @@ const Home: FunctionComponent<HomeProps> = () => {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-gray-900 min-h-screen">
       <AppHeader />
       <Container maxWidth="xl" className="flex min-h-screen items-center">
         <div className="flex w-full">

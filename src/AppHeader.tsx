@@ -10,21 +10,22 @@ import {
 } from "@mui/material";
 import format from "date-fns/format";
 
-import Logo from "common/Logo";
+// import Logo from "common/Logo";
 import { Link } from "react-router-dom";
 import { RouteEnum } from "constants/RouteConstants";
 
 function AppHeader() {
   return (
-    <AppBar sx={{ background: "#f9fafb" }} elevation={0}>
+    <div className='bg-slate-600'>
+    <AppBar elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to={RouteEnum.HOME}>
-            <Logo />
+            <div className='text-blue-500 font-bold text-lg'>Colabspace</div>
           </Link>
 
           <div className="flex-1" />
-          <Typography className="text-black">{format(new Date(), "p . E, LLL qo")}</Typography>
+          <Typography className="text-gray-300">{format(new Date(), "p . E, LLL qo")}</Typography>
 
           <div className="flex items-center">
             <Tooltip title="Settings">
@@ -36,6 +37,7 @@ function AppHeader() {
         </Toolbar>
       </Container>
     </AppBar>
+    </div>
   );
 }
 
