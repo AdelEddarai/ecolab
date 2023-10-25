@@ -13,7 +13,7 @@ declare module "@mui/material/Fab" {
 export const theme: any = customizeComponents({
   palette: {
     common: {
-      white: "#000",
+      white: "#FFF",
       black: "#000000",
     },
     primary: {

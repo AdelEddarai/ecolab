@@ -16,7 +16,7 @@ import { RouteEnum } from "constants/RouteConstants";
 
 function AppHeader() {
   return (
-    <div className='bg-slate-600'>
+    <div className='bg-gray-300'>
     <AppBar elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
