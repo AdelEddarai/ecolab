@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import ReactGA from "react-ga";
 
+import VideoChatApp from './Cards'
+
 // import Memoji1 from "assets/img/memoji1.png";
 // import Memoji2 from "assets/img/memoji2.png";
 // import Memoji3 from "assets/img/memoji3.png";
@@ -85,19 +87,19 @@ const Home: FunctionComponent<HomeProps> = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-black min-h-screen">
       <AppHeader />
       <Container maxWidth="xl" className="flex min-h-screen items-center">
         <div className="flex w-full">
           <div className="flex justify-center lg:justify-start items-center text-center lg:text-left  w-full lg:w-2/4">
             <div className="max-w-[550px]">
-              <Typography variant="h5" className="text-gray-400">
+              <Typography variant="h5" className="text-gray-100">
                 No Account Needed
               </Typography>
-              <Typography variant="h1" mt={1} fontWeight={600}>
+              <Typography variant="h1" className="text-gray-100" mt={1} fontWeight={600}>
                 Start & join meetings free
               </Typography>
-              <Typography className="max-w-[500px] mt-3" variant="h6">
+              <Typography className="max-w-[500px] mt-3 text-gray-100" variant="h6">
                 Opensource service we built for secure business and social
                 meetings to make it free and available for all.
               </Typography>
@@ -119,7 +121,7 @@ const Home: FunctionComponent<HomeProps> = () => {
                 <Button
                   size="large"
                   disableElevation
-                  className="h-full py-[15.7px] w-2/5 font-bold"
+                  className="bg-blue-300 text-black h-full py-[15.7px] w-2/5 font-bold"
                   fullWidth
                   type="submit"
                 >
@@ -194,6 +196,8 @@ const Home: FunctionComponent<HomeProps> = () => {
           </div>
         </div>
       </Container>
+
+      <VideoChatApp />
     </div>
   );
 };
